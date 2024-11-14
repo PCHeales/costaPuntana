@@ -1,0 +1,55 @@
+/* Variables de colores basadas en la paleta anterior */
+:root {
+    --color-principal: #228B22;
+    --color-secundario: #7CB342;
+    --color-acento: #D4AC0D;
+    --color-texto: #FFFFFF;
+    --color-fondo: #F2F2F2;
+  }
+  
+  /* Personalizaciones para Bootstrap */
+  
+  /* Botones */
+  .btn-primary {
+    background-color: var(--color-principal);
+    border-color: var(--color-principal);
+  }
+  
+  .btn-secondary {
+    background-color: var(--color-secundario);
+    border-color: var(--color-secundario);
+  }
+  
+  .btn-success {
+    background-color: var(--color-principal);
+    border-color: var(--color-principal);
+  }
+  
+  /* Enlaces */
+  a {
+    color: var(--color-acento);
+  }
+  
+  /* Fondos */
+  body {
+    background-color: var(--color-fondo);
+  }
+  
+  /* Cabeceras */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-principal);
+  }
+  
+  /* Otras personalizaciones (ajusta según tus necesidades) */
+  .card {
+    border-color: var(--color-secundario);
+  }
+  
+  .navbar {
+    background-color: var(--color-principal);
+    color: var(--color-texto);
+  }
+  
+  .form-control {
+    border-color: var(--color-secundario);
+  }
