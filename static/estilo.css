@@ -45,11 +45,29 @@
     border-color: var(--color-secundario);
   }
   
-  .navbar {
-    background-color: var(--color-principal);
-    color: var(--color-texto);
-  }
+  
   
   .form-control {
     border-color: var(--color-secundario);
   }
+
+  /* Navbar */
+.navbar {
+    background-color: var(--color-principal);
+    border-bottom: 2px solid var(--color-secundario);
+    border-radius: 0px 0px 10px 10px; /* Bordes redondeados en la parte inferior */
+  }
+  
+  .navbar-nav .nav-link {
+    color: var(--color-texto);
+    border-radius: 5px; /* Bordes redondeados para los enlaces */
+    transition: all 0.3s ease-in-out; /* Transición para las animaciones */
+  }
+  
+  .navbar-nav .nav-link:hover {
+    background-color: var(--color-acento);
+    color: var(--color-texto);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Sombra al pasar el mouse */
+  }
+
+ 
