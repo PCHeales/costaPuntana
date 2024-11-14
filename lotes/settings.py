@@ -21,15 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-gbaq)us@es&^c=@&pemlw8x_*v2uid+ou#cad7q20caac#7j!@'
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-gbaq)us@es&^c=@&pemlw8x_*v2uid+ou#cad7q20caac#7j!@')
-# SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-
-DEBUG = False
-
-ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -75,6 +66,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lotes.wsgi.application'
 
+# SECURITY WARNING: keep the secret key used in production secret!
+#SECRET_KEY = 'django-insecure-gbaq)us@es&^c=@&pemlw8x_*v2uid+ou#cad7q20caac#7j!@'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-gbaq)us@es&^c=@&pemlw8x_*v2uid+ou#cad7q20caac#7j!@')
+# SECURITY WARNING: don't run with debug turned on in production!
+#DEBUG = True
+
+DEBUG = False
+
+ALLOWED_HOSTS = ["*"]
+
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -92,7 +93,21 @@ DATABASES = {
         conn_max_age=600
     )
 }
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'staticfiles')
+]
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    
+    # Default primary key field type
+    # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+    DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+    
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -127,17 +142,4 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'staticfiles')
-]
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-    
-    # Default primary key field type
-    # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-    DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
