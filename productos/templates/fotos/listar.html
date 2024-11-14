@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table table-striped">
+    <th>Titulo</th>
+    <th>Ubicacion</th>
+    <th>Descripcion</th>
+    {% for elemento in lista %}
+        <tr>
+            <td><a href="{% url 'fotosListar' id=elemento.id %}">{{elemento.nombre}}</a></td>
+            <td><a href="{% url 'fotosListar' id=elemento.id %}">{{elemento.ubicacion}}</a></td>
+            <td><a href="{% url 'fotosListar' id=elemento.id %}">{{elemento.descripcion}}</a></td>
+        </tr>
+        
+    {% endfor %}
+</table>
+{% if user.is_authenticated %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script>
+        function editar(id) {
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'existeProducto' %}",
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                id:id
+            },
+            success: function (data) {
+
+                if (data['status'] === "error") {
+                    $('#message').text('Error!');
+                    return false
+                }
+                
+                $('#message').text('Servicio agregado a estilista con exito');
+                console.log("{% url 'existeProducto' %}");
+                setTimeout(function () {
+                    window.location.href = data["direccion"];
+                    //window.location.href = "{% url 'inmuebleEditar' id=1 %}";
+
+                }, 500);
+            },
+            error: function (error) {
+                console.log(error);
+            },
+        })
+    }
+    </script>
+{% endif %}
+{% endblock %}

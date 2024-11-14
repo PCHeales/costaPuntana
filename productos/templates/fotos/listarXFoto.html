@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container text-center">
+        {% for elemento in lista %}
+            <div class="row">
+                <a href="#">
+                    <img src="{{elemento.archivo.url}}"  class="rounded mx-auto d-block img-fluid" alt="{{elemento.descripcion}}">
+                </a>
+                
+            </div>
+        {% endfor %}
+    </div>
+    
+    
+{% endblock %}

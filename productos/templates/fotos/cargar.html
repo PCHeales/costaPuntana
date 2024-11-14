@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <label for="archivo" class="form-label">Archivos</label>
+            </div>
+            <div class="col">
+                <input type="file" class="form-control" accept="image/*" name="archivo" id="archivo" multiple>
+                <div id="nombreAyuda" class="form-text">Ingresa las imagenes del lote
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <label for="descripcion" class="form-label">Descripcion</label>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="descripcion" id="descripcion">
+                <div id="nombreAyuda" class="form-text">Ingresa una breve descripcion (opcional)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <label for="" class="form-label">Selecciona el lote correcto</label>
+            <table class="table">
+                <th>Nombre</th>
+                <th>Fecha Agregado / Editado</th>
+                <th>Estado</th>
+                <th>Seleccionar</th>
+                {% for lote in lotes %}
+                    <tr>
+                        <td>
+                            {{ lote.nombre }}
+                        </td>
+                        <td>
+                            {{ lote.fechaAgregado }}
+                        </td>
+                        <td>
+                            {% if lote.estado %}
+                                Activo
+                            {% else %}
+                                Inactivo
+                            {% endif %}
+                            
+                        </td>
+                        <td><input type="radio" name="lote" id="lote" value="{{ lote.id }}"></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+
+    <button type="submit" class="btn btn-primary position-relative start-50">Cargar</button>
+</form>
+{% endblock %}
